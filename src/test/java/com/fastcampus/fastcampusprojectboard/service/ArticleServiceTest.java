@@ -22,6 +22,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -102,7 +103,7 @@ class ArticleServiceTest {
 
         assertThat(dto).hasFieldOrPropertyWithValue("title", article.getTitle());
         assertThat(dto).hasFieldOrPropertyWithValue("content", article.getContent());
-        assertThat(dto).hasFieldOrPropertyWithValue("hashtag", article.getHashtag());
+        assertThat(dto).hasFieldOrPropertyWithValue("hashtag", article.getHashtags());
         then(articleRepository).should().findById(articleId);
     }
 
@@ -131,7 +132,7 @@ class ArticleServiceTest {
         assertThat(dto)
                 .hasFieldOrPropertyWithValue("title", article.getTitle())
                 .hasFieldOrPropertyWithValue("content", article.getContent())
-                .hasFieldOrPropertyWithValue("hashtag", article.getHashtag());
+                .hasFieldOrPropertyWithValue("hashtag", article.getHashtags());
         then(articleRepository).should().findById(articleId);
     }
 
@@ -161,7 +162,7 @@ class ArticleServiceTest {
         assertThat(article)
                 .hasFieldOrPropertyWithValue("title", dto.title())
                 .hasFieldOrPropertyWithValue("content", dto.content())
-                .hasFieldOrPropertyWithValue("hashtag", dto.hashtag());
+                .hasFieldOrPropertyWithValue("hashtag", dto.hashtagDtos());
         then(articleRepository).should().getReferenceById(dto.id());
         then(userAccountRepository).should().getReferenceById(dto.userAccountDto().userId());
 
@@ -217,8 +218,7 @@ class ArticleServiceTest {
         Article article = Article.of(
                 createUserAccount(),
                 "title",
-                "content",
-                "#java"
+                "content"
         );
 
         ReflectionTestUtils.setField(article, "id", 1L);
@@ -234,7 +234,7 @@ class ArticleServiceTest {
                 createUserAccountDto(),
                 title,
                 content,
-                hashtag,
+                null,
                 LocalDateTime.now(),
                 "Uno",
                 LocalDateTime.now(),

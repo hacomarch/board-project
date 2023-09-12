@@ -151,8 +151,7 @@ class ArticleCommentServiceTest {
         return ArticleComment.of(
                 Article.of(createUserAccount(),
                         "title",
-                        "content",
-                        "hashtag"),
+                        "content"),
                 createUserAccount(),
                 content
         );
@@ -172,8 +171,7 @@ class ArticleCommentServiceTest {
         return Article.of(
                 createUserAccount(),
                 "title",
-                "content",
-                "#java"
+                "content"
         );
     }
 }

@@ -2,6 +2,7 @@ package com.fastcampus.fastcampusprojectboard.repository;
 
 import com.fastcampus.fastcampusprojectboard.config.JpaConfig;
 import com.fastcampus.fastcampusprojectboard.domain.Article;
+import com.fastcampus.fastcampusprojectboard.domain.Hashtag;
 import com.fastcampus.fastcampusprojectboard.domain.UserAccount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -51,7 +53,7 @@ class JpaRepositoryTest {
     void givenTestData_whenInserting_thenWorksFine() {
         long previousCount = articleRepository.count();
         UserAccount userAccount = userAccountRepository.save(UserAccount.of("haco", "pw", null, null, null));
-        Article article = Article.of(userAccount, "new article", "new content", "#spring");
+        Article article = Article.of(userAccount, "new article", "new content");
 
         articleRepository.save(article);
 
@@ -62,8 +64,8 @@ class JpaRepositoryTest {
     @Test
     void givenTestData_whenUpdating_thenWorksFine() {
         Article article = articleRepository.findById(1L).orElseThrow();
-        String updatedHashtag = "#springboot";
-        article.setHashtag(updatedHashtag);
+        Hashtag updatedHashtag = Hashtag.of("springboot");
+        article.addHashtags(Set.of(updatedHashtag));
 
         Article savedArticle = articleRepository.saveAndFlush(article);
 
