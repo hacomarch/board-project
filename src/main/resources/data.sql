@@ -4,6 +4,7 @@ insert into user_account (user_id, user_password, nickname, email, memo, created
 insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values
                             ('uno2', '{noop}asdf1234', 'Uno2', 'uno2@mail.com', 'I am Uno2.', now(), 'uno2', now(), 'uno2');
 
+-- 123개의 게시글
 insert into article (user_id, title, content, created_by, modified_by, created_at, modified_at) values
                                                                                                     ('uno2', 'Quisque ut erat.', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.
 Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.
@@ -349,8 +350,7 @@ Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
 Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', 'Wilmer', 'Ingra', '2021-07-19 14:18:17', '2022-01-23 17:29:54')
 ;
 
-
--- 1000 댓글
+-- 300개 댓글
 insert into article_comment (article_id, user_id, content, created_at, modified_at, created_by, modified_by) values
                                                                                                                  (49, 'uno', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', '2021-03-02 22:40:04', '2021-04-27 15:38:09', 'Lind', 'Orv'),
                                                                                                                  (108, 'uno', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', '2021-06-08 04:36:02', '2022-01-25 15:35:42', 'Trstram', 'Loy'),

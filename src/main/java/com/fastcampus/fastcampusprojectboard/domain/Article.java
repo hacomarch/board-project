@@ -14,7 +14,6 @@ import java.util.Set;
 @ToString(callSuper = true)
 @Table(indexes = {
         @Index(columnList = "title"),
-        @Index(columnList = "hashtag"),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
@@ -32,7 +31,7 @@ public class Article extends AuditingFields{
     @Setter @Column(nullable = false, length = 10000) private String content;
 
     @ToString.Exclude
-    @JoinTable( //주인 관계에 있는 것에 붙여주는 것, 관리 역할을 하는 곳에 붙여주는 것
+    @JoinTable(
             name = "article_hashtag",
             joinColumns = @JoinColumn(name = "articleId"),
             inverseJoinColumns = @JoinColumn(name = "hashtagId")
