@@ -1,6 +1,5 @@
 package com.fastcampus.fastcampusprojectboard.repository;
 
-import com.fastcampus.fastcampusprojectboard.config.JpaConfig;
 import com.fastcampus.fastcampusprojectboard.domain.Article;
 import com.fastcampus.fastcampusprojectboard.domain.ArticleComment;
 import com.fastcampus.fastcampusprojectboard.domain.Hashtag;
