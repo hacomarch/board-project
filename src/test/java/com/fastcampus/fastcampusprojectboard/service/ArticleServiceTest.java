@@ -83,12 +83,12 @@ class ArticleServiceTest {
 
         String hashtag = "#java";
         Pageable pageable = Pageable.ofSize(20);
-        given(articleRepository.findByHashtag(hashtag, pageable)).willReturn(Page.empty(pageable));
+        given(articleRepository.findByHashtagNames(null, pageable)).willReturn(Page.empty(pageable));
 
         Page<ArticleDto> articles = sut.searchArticlesViaHashtag(hashtag, pageable);
 
         assertThat(articles).isEqualTo(Page.empty(pageable));
-        then(articleRepository).should().findByHashtag(hashtag, pageable);
+        then(articleRepository).should().findByHashtagNames(null, pageable);
     }
 
     @DisplayName("게시글 ID로 조회하면, 게시글+댓글 반환")
