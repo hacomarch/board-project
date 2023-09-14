@@ -12,8 +12,8 @@
                   th:text="'#' + ${hashtag}"
                   th:href="@{/articles(searchType=${searchTypeHashtag},searchValue=${hashtag})}"
             />
-        </attr>        <attr sel="#article-content/pre" th:text="*{content}" />
-
+        </attr>
+        <attr sel="#article-content/pre" th:text="*{content}" />
         <attr sel="#article-buttons" th:if="${#authorization.expression('isAuthenticated()')} and *{userId} == ${#authentication.name}">
             <attr sel="#delete-article-form" th:action="'/articles/' + *{id} + '/delete'" th:method="post">
                 <attr sel="#update-article" th:href="'/articles/' + *{id} + '/form'" />
@@ -23,6 +23,7 @@
         <attr sel=".comment-form" th:action="@{/comments/new}" th:method="post">
             <attr sel=".comment-textbox" th:name="content" />
         </attr>
+
         <attr sel="#article-comments" th:remove="all-but-first">
             <attr sel=".parent-comment[0]" th:each="articleComment : ${articleComments}">
                 <attr sel=".comment-delete-form" th:action="'/comments/' + ${articleComment.id} + '/delete'" th:method="post">
