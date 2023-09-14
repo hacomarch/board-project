@@ -23,19 +23,20 @@ public class ArticleComment extends AuditingFields{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //optional = false : 필수 값이다
-    @Setter @ManyToOne(optional = false) private Article article;    //게시글 (ID)
+    @Setter @ManyToOne(optional = false)
+    private Article article;    //게시글 (ID)
     @Setter @ManyToOne(optional = false) @JoinColumn(name = "userId")
     private UserAccount userAccount;
 
     @Setter
-    @Column(updatable = false)  //한 번 세팅되면, 업데이트가 되지 않게 설정
-    private Long parentCommentId;   //부모 댓글 아이디
+    @Column(updatable = false)
+    private Long parentCommentId; // 부모 댓글 ID
 
     @ToString.Exclude
     @OrderBy("createdAt ASC")
     @OneToMany(mappedBy = "parentCommentId", cascade = CascadeType.ALL)
     private Set<ArticleComment> childComments = new LinkedHashSet<>();
+
 
     @Setter @Column(nullable = false, length = 500) private String content;
 
