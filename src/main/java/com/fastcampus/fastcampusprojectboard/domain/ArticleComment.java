@@ -23,9 +23,13 @@ public class ArticleComment extends AuditingFields{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter @ManyToOne(optional = false)
+    @Setter
+    @ManyToOne(optional = false)
     private Article article;    //게시글 (ID)
-    @Setter @ManyToOne(optional = false) @JoinColumn(name = "userId")
+
+    @Setter
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "userId")
     private UserAccount userAccount;
 
     @Setter
@@ -36,7 +40,6 @@ public class ArticleComment extends AuditingFields{
     @OrderBy("createdAt ASC")
     @OneToMany(mappedBy = "parentCommentId", cascade = CascadeType.ALL)
     private Set<ArticleComment> childComments = new LinkedHashSet<>();
-
 
     @Setter @Column(nullable = false, length = 500) private String content;
 
